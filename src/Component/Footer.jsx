@@ -24,7 +24,6 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Center: Services & Links */}
         <div className="md:w-2/3 w-full flex flex-col md:flex-row">
           <div className="w-full md:w-1/2 px-4 py-6 md:py-0">
             <div className="text-[#b6ffb6] text-lg font-semibold mb-3">Our Services</div>
