@@ -9,6 +9,8 @@ import MyPlants from "../Pages/MyPlants";
 import AddPlants from "../Pages/AddPlants";
 import Login from "../Pages/Login";
 import Register from "../Pages/Register";
+import Error from "../Pages/Error";
+import Private from "../Provider/Private";
 
 const router = createBrowserRouter([
   {
@@ -25,11 +27,21 @@ const router = createBrowserRouter([
         },
         {
             path: "my-plants",
-            Component: MyPlants
+            Component: () => 
+             (
+                <Private>
+                    <MyPlants></MyPlants>
+                </Private>
+             )
         },
         {
             path: "add-plant",
-            Component: AddPlants
+            Component: () =>
+            (
+                <Private>
+                    <AddPlants></AddPlants>
+                </Private>
+            )
         },
         {
           path: "login",
@@ -38,6 +50,10 @@ const router = createBrowserRouter([
         {
             path: "register",
             Component: Register
+        },
+        {
+            path: "*",
+            Component: Error
         }
     ]
   },

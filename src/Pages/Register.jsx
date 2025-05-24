@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
-// import { useNavigate } from 'react-router-dom';
+import React, { useState, useContext } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { AuthContext } from '../Provider/AuthProvider';
 
 const Register = () => {
     const [name, setName] = useState("");
@@ -8,26 +10,49 @@ const Register = () => {
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
-    // const navigate = useNavigate();
+
+    const { createUser, googleSignIn } = useContext(AuthContext);
+    const navigate = useNavigate();
 
     const validatePassword = (pwd) => {
-        return /[A-Z]/.test(pwd) && /[a-z]/.test(pwd) && pwd.length >= 6;
+        if (!/[A-Z]/.test(pwd)) return "Must include an uppercase letter.";
+        if (!/[a-z]/.test(pwd)) return "Must include a lowercase letter.";
+        if (pwd.length < 6) return "Must be at least 6 characters.";
+        return "";
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        setError("");
-        if (!validatePassword(password)) {
-            setError("Password must contain uppercase, lowercase, and be at least 6 characters long.");
+        const validationError = validatePassword(password);
+        if (validationError) {
+            setError(validationError);
             return;
         }
+
+        setError("");
         setLoading(true);
-        // Dummy registration logic
-        setTimeout(() => {
+        try {
+            await createUser(email, password);
+            toast.success("Registration successful!");
+            navigate("/");
+        } catch (err) {
+            setError(err.message || "Registration failed.");
+            toast.error(err.message || "Registration failed.");
+        } finally {
             setLoading(false);
-            // navigate("/");
-            alert("Registration successful! (Demo)");
-        }, 1200);
+        }
+    };
+
+    const handleGoogleLogin = async () => {
+        setError("");
+        try {
+            await googleSignIn();
+            toast.success("Logged in with Google!");
+            navigate("/");
+        } catch (err) {
+            setError(err.message || "Google login failed.");
+            toast.error(err.message || "Google login failed.");
+        }
     };
 
     return (
@@ -86,6 +111,7 @@ const Register = () => {
                     />
                 </div>
                 {error && <div className="text-red-300 text-sm text-center">{error}</div>}
+
                 <button
                     type="submit"
                     className="bg-[#1a5c3a] text-white font-semibold py-2 rounded hover:bg-[#0d3c29] transition-colors disabled:opacity-60"
@@ -93,8 +119,17 @@ const Register = () => {
                 >
                     {loading ? "Registering..." : "Register"}
                 </button>
+
+                <button
+                    type="button"
+                    onClick={handleGoogleLogin}
+                    className="bg-white text-[#06402B] font-semibold py-2 rounded hover:bg-[#e0f5eb] border border-[#1a5c3a] transition-colors"
+                >
+                    Register with Google
+                </button>
+
                 <div className="text-center text-[#b6ffb6] mt-2">
-                    Already have an account? <a href="/login" className="underline hover:text-white">Login</a>
+                    Already have an account? <Link to="/login" className="underline hover:text-white">Login</Link>
                 </div>
             </form>
         </div>
