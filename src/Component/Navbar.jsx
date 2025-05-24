@@ -75,7 +75,7 @@ export default function Navbar() {
             className={({ isActive }) =>
               `px-4 py-1 rounded-md font-medium transition ${
                 isActive ? "underline decoration-white" : ""
-              } bg-white text-[rgba(6,64,43,1)] hover:bg-[rgba(6,64,43,1)] hover:text-white hover:border hover:border-white hover:rounded-full cursor-pointer`
+              } bg-[#b6ffb6] text-[rgba(6,64,43,1)] hover:bg-[rgba(6,64,43,1)] hover:text-[#b6ffb6]  hover:rounded-full cursor-pointer`
             }
           >
             Login
@@ -85,7 +85,7 @@ export default function Navbar() {
             className={({ isActive }) =>
               `px-4 py-1 rounded-md font-medium transition ${
                 isActive ? "underline decoration-white" : ""
-              } bg-white text-[rgba(6,64,43,1)] hover:bg-[rgba(6,64,43,1)] hover:text-white hover:border hover:border-white hover:rounded-full cursor-pointer`
+              } bg-[#b6ffb6] text-[rgba(6,64,43,1)] hover:bg-[rgba(6,64,43,1)] hover:text-[#b6ffb6] hover:rounded-full cursor-pointer`
             }
           >
             Register

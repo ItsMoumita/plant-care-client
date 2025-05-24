@@ -20,15 +20,15 @@ const router = createBrowserRouter([
             Component: Home
         },
         {
-            path: "allplants",
+            path: "all-plants",
             Component: AllPlants
         },
         {
-            path: "myplants",
+            path: "my-plants",
             Component: MyPlants
         },
         {
-            path: "addplant",
+            path: "add-plant",
             Component: AddPlants
         },
         {
