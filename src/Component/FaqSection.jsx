@@ -33,7 +33,7 @@ const FaqSection = () => {
 
   return (
     <div className="bg-[#f4fff4] py-20 px-6 lg:px-20" id="faq">
-      <div className="max-w-6xl mx-auto flex flex-col lg:flex-row items-start gap-12">
+      <div className="w-11/12 mx-auto flex flex-col lg:flex-row items-start gap-12">
         {/* Left Side */}
         <div className="lg:w-1/2 space-y-4">
           <span className="bg-green-200 text-green-900 text-sm font-semibold px-3 py-1 rounded-full inline-block">

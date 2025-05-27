@@ -19,29 +19,40 @@ const auth = getAuth(app);
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [balance, setBalance] = useState(10000); 
 
-  useEffect(() => {
-    // Retrieve balance from localStorage on initial load
-    const storedBalance = localStorage.getItem("balance");
-    if (storedBalance) {
-      setBalance(Number(storedBalance));
-    }
-  }, []);
 
-  useEffect(() => {
-    // Save balance to localStorage whenever it changes
-    localStorage.setItem("balance", balance);
-  }, [balance]);
 
-  const createUser = (email, password) => {
+
+//   const createUser = async (email, password, name, photoURL = null) => {
+//   setLoading(true);
+//   const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+
+//   // Set displayName and photoURL after account creation
+//   await updateProfile(userCredential.user, {
+//     displayName: name,
+//     photoURL: photoURL || "https://i.ibb.co/JF3n8Nf/default-avatar.png", // fallback photo
+//   });
+
+//   // Reload user info
+//   await userCredential.user.reload();
+
+//   return userCredential;
+// };
+
+
+const createUser = (email, password) => {
     setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
-  const signIn = (email, password) => {
+  const signIn = async (email, password) => {
     setLoading(true);
-    return signInWithEmailAndPassword(auth, email, password);
+    const userCredential = await signInWithEmailAndPassword(auth, email, password);
+    // Force reload to get latest profile info (displayName, photoURL)
+    if (auth.currentUser) {
+      await auth.currentUser.reload();
+    }
+    return userCredential;
   };
 
   const updateUser = (updatedData) => {
@@ -53,8 +64,14 @@ const AuthProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
+    const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
+      if (currentUser) {
+        // Force refresh to get latest profile info
+        await currentUser.reload();
+        setUser({ ...currentUser });
+      } else {
+        setUser(null);
+      }
       setLoading(false);
     });
     return () => {
@@ -83,8 +100,7 @@ const googleSignIn = () => {
     loading,
     setLoading,
     updateUser,
-    balance,
-    setBalance,
+  
   };
   return (
     <AuthContext.Provider value={authData}>

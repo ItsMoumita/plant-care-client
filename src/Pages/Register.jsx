@@ -2,6 +2,8 @@ import React, { useState, useContext } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { AuthContext } from '../Provider/AuthProvider';
+// import { getAuth, updateProfile } from 'firebase/auth';
+import Swal from 'sweetalert2';
 
 const Register = () => {
     const [name, setName] = useState("");
@@ -11,37 +13,122 @@ const Register = () => {
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
 
-    const { createUser, googleSignIn } = useContext(AuthContext);
+    const { createUser, googleSignIn, setUser, updateUser } = useContext(AuthContext);
+ 
+    const [nameError, setNameError] = useState("");
+    const [passwordError, setPasswordError] = useState("");
+
     const navigate = useNavigate();
 
-    const validatePassword = (pwd) => {
-        if (!/[A-Z]/.test(pwd)) return "Must include an uppercase letter.";
-        if (!/[a-z]/.test(pwd)) return "Must include a lowercase letter.";
-        if (pwd.length < 6) return "Must be at least 6 characters.";
-        return "";
-    };
+    // const validatePassword = (pwd) => {
+    //     if (!/[A-Z]/.test(pwd)) return "Must include an uppercase letter.";
+    //     if (!/[a-z]/.test(pwd)) return "Must include a lowercase letter.";
+    //     if (pwd.length < 6) return "Must be at least 6 characters.";
+    //     return "";
+    // };
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        const validationError = validatePassword(password);
-        if (validationError) {
-            setError(validationError);
-            return;
-        }
+    // const handleSubmit = async (e) => {
+    //     e.preventDefault();
+    //     const validationError = validatePassword(password);
+    //     if (validationError) {
+    //         setError(validationError);
+    //         return;
+    //     }
 
-        setError("");
-        setLoading(true);
-        try {
-            await createUser(email, password);
-            toast.success("Registration successful!");
-            navigate("/");
-        } catch (err) {
-            setError(err.message || "Registration failed.");
-            toast.error(err.message || "Registration failed.");
-        } finally {
-            setLoading(false);
-        }
-    };
+    //     setError("");
+    //     setLoading(true);
+    //     try {
+    //         const userCredential = await createUser(email, password);
+    //         // Update profile with name and photoURL
+    //         const auth = getAuth();
+    //         await updateProfile(auth.currentUser, {
+    //             displayName: name,
+    //             photoURL: photoURL,
+    //         });
+    //         toast.success("Registration successful!");
+    //         navigate("/");
+    //     } catch (err) {
+    //         setError(err.message || "Registration failed.");
+    //         toast.error(err.message || "Registration failed.");
+    //     } finally {
+    //         setLoading(false);
+    //     }
+    // };
+
+//     const handleSubmit = async (e) => {
+//   e.preventDefault();
+//   const validationError = validatePassword(password);
+//   if (validationError) {
+//     setError(validationError);
+//     return;
+//   }
+
+//   setError("");
+//   setLoading(true);
+//   try {
+//     const userCredential = await createUser(email, password, name, photoURL);
+//     toast.success("Registration successful!");
+//     navigate("/");
+//   } catch (err) {
+//     setError(err.message || "Registration failed.");
+//     toast.error(err.message || "Registration failed.");
+//   } finally {
+//     setLoading(false);
+//   }
+// };
+
+
+const handleSubmit= async (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const name = form.name.value.trim();
+    const photo = form.photoURL.value.trim();
+    const email = form.email.value.trim();
+    const password = form.password.value;
+
+    if (name.length < 5) {
+      setNameError("Name should be more than 5 characters");
+      return;
+    } else {
+      setNameError("");
+    }
+
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
+    if (!passwordRegex.test(password)) {
+      setPasswordError("Password must have 6+ characters, with at least one uppercase and one lowercase letter.");
+      return;
+    } else {
+      setPasswordError("");
+    }
+
+    try {
+      const result = await createUser(email, password);
+      await updateUser({ displayName: name, photoURL: photo });
+      setUser({ ...result.user, displayName: name, photoURL: photo });
+      Swal.fire({
+  title: "Success!",
+  text: "Registered successfully!",
+  icon: "success",
+  background: "#FFFBDE",
+  color: "#096B68",
+  confirmButtonColor: "#129990",
+});
+
+      navigate("/");
+    } catch (error) {
+      Swal.fire({
+  title: "Error!",
+  text: error.message,
+  icon: "error",
+  background: "#FFFBDE",
+  color: "#096B68",
+  confirmButtonColor: "#129990",
+});
+
+    }
+  };
+
+
 
     const handleGoogleLogin = async () => {
         setError("");
@@ -74,6 +161,9 @@ const Register = () => {
                         autoComplete="name"
                     />
                 </div>
+                {
+                    nameError && <div className="text-red-300 text-sm">{nameError}</div>
+                }
                 <div className="flex flex-col gap-2">
                     <label htmlFor="email" className="text-white font-medium">Email</label>
                     <input
@@ -110,6 +200,7 @@ const Register = () => {
                         autoComplete="new-password"
                     />
                 </div>
+                {passwordError && <div className="text-red-300 text-sm">{passwordError}</div>}
                 {error && <div className="text-red-300 text-sm text-center">{error}</div>}
 
                 <button
