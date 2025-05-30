@@ -59,7 +59,7 @@ const MyPlants = () => {
     return (
         <div>
             <Navbar />
-            <div className="p-6 md:p-12 mx-auto mt-22 bg-[#e6ffe6] dark:bg-[#c7ecc7] font-semibold dark:text-black">
+            <div className="p-6 md:p-12 mx-auto md:min-h-[60vh] mt-22 bg-[#e6ffe6] dark:bg-[#c7ecc7] font-semibold dark:text-black">
                 <h2 className="text-2xl font-semibold mb-4 text-green-900 dark:text-[#0d3c29] text-center">My Plants</h2>
 
                 <div className="max-w-11/12 mx-auto overflow-x-auto">

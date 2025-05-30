@@ -132,7 +132,7 @@ const handleSubmit = (e) => {
       <div className="bg-[#e6ffe6]">
         <Navbar></Navbar>
 
-  <div className="max-w-5xl mx-auto p-8  bg-[#e6ffe6]  border shadow-lg mt-22 ">
+  <div className="max-w-5xl mx-auto p-8  bg-[#e6ffe6] shadow-lg mt-22 ">
       <h2 className="text-3xl font-bold mb-6 text-green-800 text-center">Add a New Plant</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
