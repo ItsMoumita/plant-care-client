@@ -22,26 +22,6 @@ const MyPlants = () => {
         }
     }, [user]);
 
-//     useEffect(() => {
-//     if (user?.email) {
-//         console.log("Fetching plants for user:", user.email);
-//         fetch(`http://localhost:3000/myplants?email=${user.email}`)
-//             .then((res) => {
-//                 if (!res.ok) {
-//                     throw new Error(`HTTP error! Status: ${res.status}`);
-//                 }
-//                 return res.json();
-//             })
-//             .then((data) => {
-//                 console.log("Fetched plants:", data);
-//                 setMyPlants(data);
-//             })
-//             .catch((err) => {
-//                 console.error("Failed to fetch plants:", err);
-//             });
-//     }
-// }, [user]);
-
 
     const handleDelete = (id) => {
         Swal.fire({
@@ -49,7 +29,7 @@ const MyPlants = () => {
             text: "This action cannot be undone.",
             icon: "warning",
             showCancelButton: true,
-            confirmButtonColor: "#3085d6",
+            confirmButtonColor: "rgba(6,64,43,0.7)",
             cancelButtonColor: "#d33",
             confirmButtonText: "Yes, delete it!",
         }).then((result) => {
@@ -60,10 +40,10 @@ const MyPlants = () => {
                 })
                     .then((res) => res.json())
                     .then((data) => {
-                        console.log(data.deletedCount, "Plant deleted:", id, typeof id, "data:", data);
+                       
                         if (data.deletedCount > 0) {
                              Swal.fire("Deleted!", "Your plant has been deleted.", "success");
-                             console.log("Plant deleted:", typeof id);
+                            
                               setMyPlants((prev) => 
                                 prev.filter((plant) => plant._id !== id));
                            

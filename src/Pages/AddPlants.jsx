@@ -6,6 +6,7 @@ import React, { useContext } from "react";
 import Navbar from "../Component/Navbar";
 import Footer from "../Component/Footer";
 import { AuthContext } from "../Provider/AuthProvider";
+import Swal from "sweetalert2";
 
 // const auth = getAuth(app);
 // const db = getFirestore(app);
@@ -91,6 +92,7 @@ const handleSubmit = (e) => {
     delete newPlant.userName;
     delete newPlant.userEmail;
     newPlant.email = user?.email;
+    newPlant.userName = user?.displayName || "Anonymous";
     // console.log(newPlant);
     fetch('http://localhost:3000/plants', {
         method: "POST",
@@ -103,10 +105,24 @@ const handleSubmit = (e) => {
     .then(data => {
       // console.log(newPlant.email, newPlant.userEmail)
         if (data.insertedId) {
-            alert("Plant added successfully!");
+           Swal.fire({
+            title: "Success!",
+            text: "New plant added successfully!",
+            icon: "success",
+            background: "white/70",
+            color: "rgba(6,64,43,0.7)",
+            confirmButtonColor: "rgba(6,64,43,0.7)",
+          });
             form.reset();
         } else {
-            alert("Failed to add plant.");
+             Swal.fire({
+              title: "Error!",
+              text: "Failed to add plant. Please try again.",
+              icon: "error",
+              background: "white/70",
+              color: "rgba(6,64,43,0.7)",
+              confirmButtonColor: "rgba(6,64,43,0.7)",
+            });
         }
     })
 

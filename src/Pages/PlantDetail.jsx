@@ -41,8 +41,10 @@ const {  user } = useContext(AuthContext);
         <p className="text-gray-600 mb-1"><strong>Next Watering:</strong> {plant.nextWateringDate}</p>
         <p className="text-gray-600 mb-1"><strong>Health:</strong> {plant.healthStatus}</p>
         {
-          plant.email && (
-            <p className="text-gray-600 mt-4"><strong>Owner:</strong>({user.displayName})</p>
+          plant.email ?(
+            <p className="text-gray-600 mt-4"><strong>Owner:</strong>{plant.userName}</p>
+          ): (
+            <p className="text-gray-600 mt-4"><strong>Owner:</strong>Owner not found</p>
           )
         }
       </div>

@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import Navbar from "../Component/Navbar";
 import Footer from "../Component/Footer";
+import Loading from "../Component/Loading";
 
 const UpdatePlant = () => {
   const { id } = useParams();
@@ -22,30 +23,38 @@ const UpdatePlant = () => {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    fetch(`http://localhost:3000/plants/${id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(plant),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.modifiedCount > 0) {
-          Swal.fire("Updated!", "Your plant has been updated.", "success");
-          navigate("/myplants");
-        } else {
-          Swal.fire("No Change", "No changes were made.", "info");
-        }
-      })
-      .catch((err) => {
-        console.error("Update failed:", err);
-        Swal.fire("Error", "Failed to update the plant.", "error");
-      });
+  e.preventDefault();
+  const { _id, ...rest } = plant;
+  const updatedPlant = {
+    ...rest,
+    lastWateredDate: plant.lastWateredDate ? new Date(plant.lastWateredDate).toISOString() : null,
+    nextWateringDate: plant.nextWateringDate ? new Date(plant.nextWateringDate).toISOString() : null,
   };
+console.log("Updated Plant Data:", updatedPlant);
+  fetch(`http://localhost:3000/plants/${id}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(updatedPlant),
+  })
+    .then((res) => res.json())
+   .then((data) => {
+    console.log("Update response:", data);
+  if (data.modifiedCount > 0) {
+    Swal.fire("Updated!", "Your plant has been updated.", "success");
+    navigate("/my-plants");
+  } else {
+    Swal.fire("No Change", "No changes were made.", "info");
+  }
+})
 
-  if (!plant) return <div className="text-center p-8">Loading...</div>;
+};
+
+
+  if (!plant) return (
+    <Loading></Loading>
+  )
 
   return (
     <div className="bg-[#e6ffe6] min-h-screen">
