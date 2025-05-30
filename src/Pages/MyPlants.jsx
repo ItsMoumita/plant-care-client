@@ -13,7 +13,7 @@ const MyPlants = () => {
     useEffect(() => {
         if (user?.email) {
           
-            fetch(`http://localhost:3000/myplants?email=${user.email}`)
+            fetch(`https://plant-care-server-42t1fwv8n-itsmoumitas-projects.vercel.app/myplants?email=${user.email}`)
                 .then((res) => res.json())
                 .then((data) => {
                     
@@ -35,7 +35,7 @@ const MyPlants = () => {
         }).then((result) => {
             if (result.isConfirmed) {
                
-                fetch(`http://localhost:3000/plants/${id}`, {
+                fetch(`https://plant-care-server-42t1fwv8n-itsmoumitas-projects.vercel.app/plants/${id}`, {
                     method: "DELETE",
                 })
                     .then((res) => res.json())

@@ -11,7 +11,7 @@ const UpdatePlant = () => {
   const [plant, setPlant] = useState(null);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/plants/${id}`)
+    fetch(`https://plant-care-server-42t1fwv8n-itsmoumitas-projects.vercel.app/plants/${id}`)
       .then((res) => res.json())
       .then((data) => setPlant(data))
       .catch((err) => console.error("Failed to fetch plant:", err));
@@ -31,7 +31,7 @@ const UpdatePlant = () => {
     nextWateringDate: plant.nextWateringDate ? new Date(plant.nextWateringDate).toISOString() : null,
   };
 console.log("Updated Plant Data:", updatedPlant);
-  fetch(`http://localhost:3000/plants/${id}`, {
+  fetch(`https://plant-care-server-42t1fwv8n-itsmoumitas-projects.vercel.app/plants/${id}`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",

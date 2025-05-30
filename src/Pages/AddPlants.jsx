@@ -94,7 +94,7 @@ const handleSubmit = (e) => {
     newPlant.email = user?.email;
     newPlant.userName = user?.displayName || "Anonymous";
     // console.log(newPlant);
-    fetch('http://localhost:3000/plants', {
+    fetch('https://plant-care-server-42t1fwv8n-itsmoumitas-projects.vercel.app/plants', {
         method: "POST",
         headers: {
             "content-type": "application/json",

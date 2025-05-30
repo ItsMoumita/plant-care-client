@@ -11,7 +11,7 @@ const PlantDetail = () => {
 const {  user } = useContext(AuthContext);
   useEffect(() => {
    
-    fetch(`http://localhost:3000/plants`)
+    fetch(`https://plant-care-server-42t1fwv8n-itsmoumitas-projects.vercel.app/plants`)
       .then((res) => res.json())
       .then((data) => {
         const foundPlant = data.find((p) => p._id === id);

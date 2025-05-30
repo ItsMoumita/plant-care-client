@@ -6,7 +6,7 @@ const NewPlants = () => {
   const [newPlants, setNewPlants] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:3000/plants/newplants")
+    fetch("https://plant-care-server-42t1fwv8n-itsmoumitas-projects.vercel.app/plants/newplants")
       .then((res) => res.json())
       .then((data) => {
         setNewPlants(data);
