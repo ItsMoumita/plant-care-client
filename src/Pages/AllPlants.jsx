@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../Component/Navbar";
 import Footer from "../Component/Footer";
+import Loading from "../Component/Loading";
 
 const AllPlants = () => {
   const [plants, setPlants] = useState([]);
@@ -20,7 +21,9 @@ const AllPlants = () => {
       });
   }, []);
 
-  if (loading) return <div className="p-6 text-lg">Loading plants...</div>;
+  if (loading) return (
+    <Loading></Loading>
+  );
 
   return (
      <div >

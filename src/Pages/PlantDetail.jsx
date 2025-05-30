@@ -1,14 +1,14 @@
 // components/PlantDetail.jsx
 import { useParams } from "react-router-dom";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 import Footer from "../Component/Footer";
 import Navbar from "../Component/Navbar";
+import Loading from "../Component/Loading";
 
 const PlantDetail = () => {
   const { id } = useParams();
   const [plant, setPlant] = useState(null);
-const {  user } = useContext(AuthContext);
   useEffect(() => {
    
     fetch(`https://plant-care-server-42t1fwv8n-itsmoumitas-projects.vercel.app/plants`)
@@ -23,7 +23,9 @@ const {  user } = useContext(AuthContext);
       });
   }, [id]);
 
-  if (!plant) return <div className="p-6">Loading...</div>;
+  if (!plant) return (
+    <Loading></Loading>
+  );
 
   return (
     // console.log("Plant data:", plant.nextWateringDate);

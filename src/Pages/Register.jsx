@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, useLocation, Link } from 'react-router-dom';
 // import { toast } from 'react-toastify';
 import { AuthContext } from '../Provider/AuthProvider';
 // import { getAuth, updateProfile } from 'firebase/auth';
@@ -18,7 +18,10 @@ const Register = () => {
     const [nameError, setNameError] = useState("");
     const [passwordError, setPasswordError] = useState("");
 
+
     const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/";
 
     // const validatePassword = (pwd) => {
     //     if (!/[A-Z]/.test(pwd)) return "Must include an uppercase letter.";
@@ -146,16 +149,16 @@ const handleSubmit= async (e) => {
                             background: "white/70",
                             color: "rgba(6,64,43,0.7)",
                             confirmButtonColor: "rgba(6,64,43,0.7)",
-                        });
-        } catch (error) {
-            //    await Swal.fire({
-            //                 title: "Error!",
-            //                 text: error.message || "Google login failed.",
-            //                 icon: "error",
-            //                 background: "white/70",
-            //                 color: "rgba(6,64,43,0.7)",
-            //                 confirmButtonColor: "rgba(6,64,43,0.7)",
-            //             });
+                        });;
+        } catch (erorr) {
+          //     await Swal.fire({
+           //                  title: "Error!",
+           //                  text: error.message || "Google login failed.",
+           //                  icon: "error",
+           //                  background: "white/70",
+           //                  color: "rgba(6,64,43,0.7)",
+           //                  confirmButtonColor: "rgba(6,64,43,0.7)",
+           //              });;
         }
     };
 
