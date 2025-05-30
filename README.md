@@ -1,12 +1,110 @@
-# React + Vite
+# 🌿 Plant Care 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A full-stack, mobile-responsive web application designed to help users manage and monitor the care of their indoor and outdoor plants. Built with React, Firebase, TailwindCSS, and more.
 
-Currently, two official plugins are available:
+**Live Demo**: [🌱 Visit Plant Care](https://plant-care-fc5f9.web.app/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🚀 Features
+
+- 🔐 **Authentication**
+  - Secure Login/Register using Email and Google Sign-In.
+  - Protected routes for logged-in users.
+  - Dynamic navbar with conditional rendering based on user state.
+
+- 🌱 **Plant Management**
+  - Add, Update, Delete personal plant entries.
+  - Track watering frequency, care level, health status, and more.
+  - View all plants or filter to "My Plants".
+
+- 📅 **Care Tracker**
+  - Date fields for last and next watering.
+  - Sort plants by care level or next watering date.
+
+- 📲 **Responsive Design**
+  - Mobile-first design with fully responsive layouts.
+  - Smooth animations using **AOS**.
+
+- 🌞🌚 **Light/Dark Theme**
+  - Toggle between light and dark modes for better usability.
+
+- 🎨 **Beautiful UI**
+  - Themed around nature with calming green tones.
+  - Interactive feedback with SweetAlert and Toast notifications.
+
+---
+
+## 🛠️ Tech Stack
+
+| Frontend | Backend | Authentication | Styling | Animations & Extras |
+|----------|---------|----------------|---------|----------------------|
+| React 19 | Firebase Firestore | Firebase Auth | Tailwind CSS | AOS, SweetAlert2 |
+| React Router v7 | Firebase Hosting | Google Sign-In | React Icons | React Toastify |
+| Swiper.js | - | - | Lucide React | Lottie, Carousel |
+
+---
+
+---
+
+## 🔐 Authentication
+
+- Firebase Email/Password
+- Google Sign-In
+- Auth state persists using Firebase Auth
+- Redirects user to intended route after login
+
+---
+
+## 📌 Pages & Routes
+
+| Page           | Path              | Access      |
+|----------------|-------------------|-------------|
+| Home           | `/`               | Public      |
+| All Plants     | `/allplants`      | Public      |
+| Add Plant      | `/addplant`       | Private     |
+| My Plants      | `/myplants`       | Private     |
+| View Details   | `/plant/:id`      | Private     |
+| Update Plant   | `/update/:id`     | Private     |
+| Login          | `/login`          | Public      |
+| Register       | `/register`       | Public      |
+| 404 Page       | `*`               | Public      |
+
+---
+
+## 📈 Sorting & Filtering
+
+- Sort by **Next Watering Date**
+- Sort by **Care Level**
+
+---
+
+## 🌐 Deployment
+
+- Hosted on **Firebase Hosting**
+- Uses **Firestore** for real-time data
+- Firebase CLI for deployment
+
+---
+
+
+# Install dependencies
+npm install
+
+# Run the app
+npm run dev
+⭐ Acknowledgements
+Firebase
+
+React
+
+TailwindCSS
+
+AOS
+
+SweetAlert2
+
+Lottie
+
