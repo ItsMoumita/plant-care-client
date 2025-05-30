@@ -104,7 +104,7 @@ const handleSubmit = (e) => {
       // console.log(newPlant.email, newPlant.userEmail)
         if (data.insertedId) {
             alert("Plant added successfully!");
-            // form.reset();
+            form.reset();
         } else {
             alert("Failed to add plant.");
         }

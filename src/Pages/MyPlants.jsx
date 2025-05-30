@@ -10,66 +10,71 @@ const MyPlants = () => {
     const { user } = useContext(AuthContext);
     const [myPlants, setMyPlants] = useState([]);
 
-    // useEffect(() => {
-    //     if (user?.email) {
-    //         console.log("Fetching plants for user:", user.email);
-    //         fetch(`http://localhost:3000/myplants?email=${user.email}`)
-    //             .then((res) => res.json())
-    //             .then((data) => {
-    //                 console.log("Fetched plants:", data);
-    //                 setMyPlants(data);
-    //             });
-    //     }
-    // }, [user]);
-
     useEffect(() => {
-    if (user?.email) {
-        console.log("Fetching plants for user:", user.email);
-        fetch(`http://localhost:3000/myplants?email=${user.email}`)
-            .then((res) => {
-                if (!res.ok) {
-                    throw new Error(`HTTP error! Status: ${res.status}`);
-                }
-                return res.json();
-            })
-            .then((data) => {
-                console.log("Fetched plants:", data);
-                setMyPlants(data);
-            })
-            .catch((err) => {
-                console.error("Failed to fetch plants:", err);
-            });
-    }
-}, [user]);
+        if (user?.email) {
+          
+            fetch(`http://localhost:3000/myplants?email=${user.email}`)
+                .then((res) => res.json())
+                .then((data) => {
+                    
+                    setMyPlants(data);
+                });
+        }
+    }, [user]);
+
+//     useEffect(() => {
+//     if (user?.email) {
+//         console.log("Fetching plants for user:", user.email);
+//         fetch(`http://localhost:3000/myplants?email=${user.email}`)
+//             .then((res) => {
+//                 if (!res.ok) {
+//                     throw new Error(`HTTP error! Status: ${res.status}`);
+//                 }
+//                 return res.json();
+//             })
+//             .then((data) => {
+//                 console.log("Fetched plants:", data);
+//                 setMyPlants(data);
+//             })
+//             .catch((err) => {
+//                 console.error("Failed to fetch plants:", err);
+//             });
+//     }
+// }, [user]);
 
 
-    // const handleDelete = (id) => {
-    //     Swal.fire({
-    //         title: "Are you sure?",
-    //         text: "This action cannot be undone.",
-    //         icon: "warning",
-    //         showCancelButton: true,
-    //         confirmButtonColor: "#3085d6",
-    //         cancelButtonColor: "#d33",
-    //         confirmButtonText: "Yes, delete it!",
-    //     }).then((result) => {
-    //         if (result.isConfirmed) {
+    const handleDelete = (id) => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "This action cannot be undone.",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!",
+        }).then((result) => {
+            if (result.isConfirmed) {
                
-    //             fetch(`http://localhost:3000/plants/${id}`, {
-    //                 method: "DELETE",
-    //             })
-    //                 .then((res) => res.json())
-    //                 .then((data) => {
-    //                     if (data.deletedCount > 0) {
-    //                          Swal.fire("Deleted!", "Your plant has been deleted.", "success");
-    //                         setMyPlants((prev) => prev.filter((plant) => plant._id.toString() !== id));
-    //                     }
-    //                 })
-    //                 .catch((err) => console.error("Delete failed:", err));
-    //         }
-    //     })
+                fetch(`http://localhost:3000/plants/${id}`, {
+                    method: "DELETE",
+                })
+                    .then((res) => res.json())
+                    .then((data) => {
+                        console.log(data.deletedCount, "Plant deleted:", id, typeof id, "data:", data);
+                        if (data.deletedCount > 0) {
+                             Swal.fire("Deleted!", "Your plant has been deleted.", "success");
+                             console.log("Plant deleted:", typeof id);
+                              setMyPlants((prev) => 
+                                prev.filter((plant) => plant._id !== id));
+                           
+                        }
+                        
+                    })
+                    .catch((err) => console.error("Delete failed:", err));
+            }
+        })
 
-    // };
+    };
 
     return (
         <div>

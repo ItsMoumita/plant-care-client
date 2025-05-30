@@ -10,7 +10,7 @@ const PlantDetail = () => {
   const [plant, setPlant] = useState(null);
 const {  user } = useContext(AuthContext);
   useEffect(() => {
-    console.log("Fetching plant details for ID:", id);
+   
     fetch(`http://localhost:3000/plants`)
       .then((res) => res.json())
       .then((data) => {

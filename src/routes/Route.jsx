@@ -12,6 +12,7 @@ import Register from "../Pages/Register";
 import Error from "../Pages/Error";
 import Private from "../Provider/Private";
 import PlantDetail from "../Pages/PlantDetail";
+import UpdatePlant from "../Pages/UpdatePlant";
 
 const router = createBrowserRouter([
   {
@@ -50,6 +51,15 @@ const router = createBrowserRouter([
             (
                 <Private>
                     <AddPlants></AddPlants>
+                </Private>
+            )
+        },
+        {
+            path: "/update-plant/:id",
+            Component: () =>
+            (
+                <Private>
+                     <UpdatePlant></UpdatePlant>
                 </Private>
             )
         },
