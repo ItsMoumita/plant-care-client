@@ -13,7 +13,7 @@ const Hero = () => {
   }, []);
 
   return (
-    <div className="w-full mx-auto mt-22 bg-[#b6ffb6]/70">
+    <div className="w-full mx-auto mt-22 bg-[#b6ffb6]/70 dark:bg-[#b6ffb6]/50">
       <div
         className="flex flex-col lg:flex-row gap-6 items-center"
         data-aos="zoom-in"
@@ -52,10 +52,10 @@ const Hero = () => {
           className="w-full lg:w-[30%] flex flex-col items-center text-center lg:text-left space-y-6 px-4"
           data-aos="fade-left"
         >
-          <h2 className="text-3xl font-bold text-green-800">
+          <h2 className="text-3xl font-bold text-green-800 dark:text-[#b6ffb6]/90">
             Nurture Nature at Home
           </h2>
-          <p className="text-gray-200 text-base">
+          <p className="text-[rgba(6,64,43,0.7)] dark:text-[#b6ffb6]/70 text-base">
             Explore a variety of plants, each with care tips to help you keep them thriving. From low-light options to tropical wonders – find your green companion.
           </p>
 

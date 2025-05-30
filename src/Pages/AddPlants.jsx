@@ -90,6 +90,8 @@ const handleSubmit = (e) => {
     // Remove userName and userEmail before sending to backend
     delete newPlant.userName;
     delete newPlant.userEmail;
+    newPlant.email = user?.email;
+    // console.log(newPlant);
     fetch('http://localhost:3000/plants', {
         method: "POST",
         headers: {
@@ -99,9 +101,10 @@ const handleSubmit = (e) => {
     })
     .then(res => res.json())
     .then(data => {
+      // console.log(newPlant.email, newPlant.userEmail)
         if (data.insertedId) {
             alert("Plant added successfully!");
-            form.reset();
+            // form.reset();
         } else {
             alert("Failed to add plant.");
         }

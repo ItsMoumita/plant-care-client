@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { toast } from 'react-toastify';
+// import { toast } from 'react-toastify';
 import { AuthContext } from '../Provider/AuthProvider';
 // import { getAuth, updateProfile } from 'firebase/auth';
 import Swal from 'sweetalert2';
@@ -109,20 +109,21 @@ const handleSubmit= async (e) => {
   title: "Success!",
   text: "Registered successfully!",
   icon: "success",
-  background: "#FFFBDE",
-  color: "#096B68",
-  confirmButtonColor: "#129990",
+  background: "white/70",
+  color: "rgba(6,64,43,0.7)",
+  confirmButtonColor: "rgba(6,64,43,0.7)",
 });
 
       navigate("/");
     } catch (error) {
+         navigate("/");
       Swal.fire({
   title: "Error!",
   text: error.message,
   icon: "error",
-  background: "#FFFBDE",
-  color: "#096B68",
-  confirmButtonColor: "#129990",
+  background: "white/70",
+  color: "rgba(6,64,43,0.7)",
+  confirmButtonColor: "rgba(6,64,43,0.7)",
 });
 
     }
@@ -134,11 +135,27 @@ const handleSubmit= async (e) => {
         setError("");
         try {
             await googleSignIn();
-            toast.success("Logged in with Google!");
+            // toast.success("Logged in with Google!");
             navigate("/");
-        } catch (err) {
-            setError(err.message || "Google login failed.");
-            toast.error(err.message || "Google login failed.");
+
+             navigate(from, { replace: true });
+                        await Swal.fire({
+                            title: "Success!",
+                            text: "Logged in with Google!",
+                            icon: "success",
+                            background: "white/70",
+                            color: "rgba(6,64,43,0.7)",
+                            confirmButtonColor: "rgba(6,64,43,0.7)",
+                        });
+        } catch (error) {
+            //    await Swal.fire({
+            //                 title: "Error!",
+            //                 text: error.message || "Google login failed.",
+            //                 icon: "error",
+            //                 background: "white/70",
+            //                 color: "rgba(6,64,43,0.7)",
+            //                 confirmButtonColor: "rgba(6,64,43,0.7)",
+            //             });
         }
     };
 

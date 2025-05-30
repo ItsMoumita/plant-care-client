@@ -79,9 +79,9 @@ const createUser = (email, password) => {
     };
   }, []);
 
-//   if (loading) {
-//     return <Loading></Loading> 
-//   }
+  if (loading) {
+    return <Loading></Loading> 
+  }
 
   const googleProvider = new GoogleAuthProvider();
 

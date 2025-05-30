@@ -6,7 +6,7 @@ import { Link } from 'react-router';
 
 const Footer = () => {
   return (
-    <footer className="bg-[#0d3c29] text-[#e6ffe6] pt-10 pb-0 border-t border-[#1a5c3a]">
+    <footer className="bg-[#0d3c29]/80 dark:bg-[#0d3c29] text-[#e6ffe6] pt-10 pb-0 border-t border-[#1a5c3a]">
       <div className="w-full max-w-7xl mx-auto px-4 flex flex-col md:flex-row gap-0 md:gap-0">
         {/* Left: Brand & Contact */}
         <div className="md:w-1/3 w-full px-4 pb-8 md:pb-0 flex flex-col gap-4 border-b md:border-b-0 md:border-r border-[#1a5c3a]">

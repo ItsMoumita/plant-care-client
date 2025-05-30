@@ -1,7 +1,8 @@
 import React, { useState, useContext } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { toast } from 'react-toastify';
+// import { toast } from 'react-toastify';
 import { AuthContext } from '../Provider/AuthProvider';
+import Swal from 'sweetalert2';
 
 const Login = () => {
     const [email, setEmail] = useState("");
@@ -15,18 +16,41 @@ const Login = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
         if (!email || !password) {
-            toast.error("Please enter both email and password.");
+            Swal.fire({
+                title: "Error!",
+                text: "Please enter both email and password.",
+                icon: "error",
+                background: "#FFFBDE",
+                color: "#096B68",
+                confirmButtonColor: "#129990",
+            });
             return;
         }
 
         setLoading(true);
         try {
             await signIn(email, password);
-            toast.success("Login successful!");
-            navigate(from, { replace: true });
+             navigate(from, { replace: true });
+            await Swal.fire({
+                title: "Success!",
+                text: "Login successful!",
+                icon: "success",
+                background: "white/70",
+                color: "rgba(6,64,43,0.7)",
+                confirmButtonColor: "rgba(6,64,43,0.7)",
+            });
+            // navigate(from, { replace: true });
         } catch (error) {
-            toast.error(error.message || "Login failed.");
+            Swal.fire({
+                title: "Error!",
+                text: error.message || "Login failed.",
+                icon: "error",
+                background: "white/70",
+                color: "rgba(6,64,43,0.7)",
+                confirmButtonColor: "rgba(6,64,43,0.7)",
+            });
         } finally {
             setLoading(false);
         }
@@ -36,10 +60,25 @@ const Login = () => {
         setLoading(true);
         try {
             await googleSignIn();
-            toast.success("Logged in with Google!");
-            navigate(from, { replace: true });
+              navigate(from, { replace: true });
+            await Swal.fire({
+                title: "Success!",
+                text: "Logged in with Google!",
+                icon: "success",
+                background: "white/70",
+                color: "rgba(6,64,43,0.7)",
+                confirmButtonColor: "rgba(6,64,43,0.7)",
+            });
+            // navigate(from, { replace: true });
         } catch (error) {
-            toast.error(error.message || "Google login failed.");
+            await Swal.fire({
+                title: "Error!",
+                text: error.message || "Google login failed.",
+                icon: "error",
+                background: "white/70",
+                color: "rgba(6,64,43,0.7)",
+                confirmButtonColor: "rgba(6,64,43,0.7)",
+            });
         } finally {
             setLoading(false);
         }
