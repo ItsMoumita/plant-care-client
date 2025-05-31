@@ -6,7 +6,7 @@ const NewPlants = () => {
   const [newPlants, setNewPlants] = useState([]);
 
   useEffect(() => {
-    fetch("https://plant-care-server-42t1fwv8n-itsmoumitas-projects.vercel.app/plants/newplants")
+    fetch("https://plant-care-server-gamma.vercel.app/plants/newplants")
       .then((res) => res.json())
       .then((data) => {
         setNewPlants(data);
@@ -18,7 +18,7 @@ const NewPlants = () => {
 
   return (
     <div className="py-10 bg-green-50 dark:bg-[#c7ecc7]">
-      <h2 className="text-2xl font-bold text-center mb-6 text-green-900 dark:text-[#0d3c29]">
+      <h2 className="text-3xl font-bold text-center mb-6 text-green-900 dark:text-[#0d3c29]">
         Newly Added Plants
       </h2>
 

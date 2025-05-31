@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext} from "react";
 // import { useAuthState } from "react-firebase-hooks/auth";
 // import app from "../firebase/firebase.config";
 // import { getAuth } from "firebase/auth";
@@ -8,8 +8,7 @@ import Footer from "../Component/Footer";
 import { AuthContext } from "../Provider/AuthProvider";
 import Swal from "sweetalert2";
 
-// const auth = getAuth(app);
-// const db = getFirestore(app);
+
 
 const AddPlantForm = () => {
 //   const [user, setUser] = useState(null);
@@ -94,7 +93,7 @@ const handleSubmit = (e) => {
     newPlant.email = user?.email;
     newPlant.userName = user?.displayName || "Anonymous";
     // console.log(newPlant);
-    fetch('https://plant-care-server-42t1fwv8n-itsmoumitas-projects.vercel.app/plants', {
+    fetch('https://plant-care-server-gamma.vercel.app/plants', {
         method: "POST",
         headers: {
             "content-type": "application/json",
@@ -127,6 +126,12 @@ const handleSubmit = (e) => {
     })
 
 }
+
+// const Home = () => {
+//   useEffect(() => {
+//     Aos.init({ duration: 1000, once: true });
+//   }, []);
+// }
 
   return (
       <div className="bg-[#e6ffe6]">
