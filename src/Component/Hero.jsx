@@ -5,7 +5,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 
 import Lottie from "lottie-react";
-import plantAnimation from "../assets/plant-care.json"; // Put your Lottie JSON in /assets
+import plantAnimation from "../assets/plant-care.json"; 
 
 const Hero = () => {
   useEffect(() => {

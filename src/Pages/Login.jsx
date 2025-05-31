@@ -41,7 +41,7 @@ const Login = () => {
                 color: "rgba(6,64,43,0.7)",
                 confirmButtonColor: "rgba(6,64,43,0.7)",
             });
-            // navigate(from, { replace: true });
+           
         } catch (error) {
             Swal.fire({
                 title: "Error!",
@@ -69,7 +69,7 @@ const Login = () => {
                 color: "rgba(6,64,43,0.7)",
                 confirmButtonColor: "rgba(6,64,43,0.7)",
             });
-            // navigate(from, { replace: true });
+          
         } catch (error) {
             await Swal.fire({
                 title: "Error!",

@@ -23,23 +23,6 @@ const AuthProvider = ({ children }) => {
 
 
 
-//   const createUser = async (email, password, name, photoURL = null) => {
-//   setLoading(true);
-//   const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-
-//   // Set displayName and photoURL after account creation
-//   await updateProfile(userCredential.user, {
-//     displayName: name,
-//     photoURL: photoURL || "https://i.ibb.co/JF3n8Nf/default-avatar.png", // fallback photo
-//   });
-
-//   // Reload user info
-//   await userCredential.user.reload();
-
-//   return userCredential;
-// };
-
-
 const createUser = (email, password) => {
     setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
@@ -48,7 +31,7 @@ const createUser = (email, password) => {
   const signIn = async (email, password) => {
     setLoading(true);
     const userCredential = await signInWithEmailAndPassword(auth, email, password);
-    // Force reload to get latest profile info (displayName, photoURL)
+  
     if (auth.currentUser) {
       await auth.currentUser.reload();
     }
@@ -66,7 +49,7 @@ const createUser = (email, password) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
       if (currentUser) {
-        // Force refresh to get latest profile info
+       
         await currentUser.reload();
         setUser({ ...currentUser });
       } else {

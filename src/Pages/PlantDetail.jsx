@@ -1,4 +1,4 @@
-// components/PlantDetail.jsx
+
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
@@ -28,7 +28,7 @@ const PlantDetail = () => {
   );
 
   return (
-    // console.log("Plant data:", plant.nextWateringDate);
+  
     <div>
       <Navbar></Navbar>
       <div className="max-w-xl mx-auto p-6">

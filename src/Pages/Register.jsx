@@ -2,7 +2,6 @@ import React, { useState, useContext } from 'react';
 import { useNavigate, useLocation, Link } from 'react-router-dom';
 // import { toast } from 'react-toastify';
 import { AuthContext } from '../Provider/AuthProvider';
-// import { getAuth, updateProfile } from 'firebase/auth';
 import Swal from 'sweetalert2';
 
 const Register = () => {
@@ -23,62 +22,7 @@ const Register = () => {
     const location = useLocation();
     const from = location.state?.from?.pathname || "/";
 
-    // const validatePassword = (pwd) => {
-    //     if (!/[A-Z]/.test(pwd)) return "Must include an uppercase letter.";
-    //     if (!/[a-z]/.test(pwd)) return "Must include a lowercase letter.";
-    //     if (pwd.length < 6) return "Must be at least 6 characters.";
-    //     return "";
-    // };
-
-    // const handleSubmit = async (e) => {
-    //     e.preventDefault();
-    //     const validationError = validatePassword(password);
-    //     if (validationError) {
-    //         setError(validationError);
-    //         return;
-    //     }
-
-    //     setError("");
-    //     setLoading(true);
-    //     try {
-    //         const userCredential = await createUser(email, password);
-    //         // Update profile with name and photoURL
-    //         const auth = getAuth();
-    //         await updateProfile(auth.currentUser, {
-    //             displayName: name,
-    //             photoURL: photoURL,
-    //         });
-    //         toast.success("Registration successful!");
-    //         navigate("/");
-    //     } catch (err) {
-    //         setError(err.message || "Registration failed.");
-    //         toast.error(err.message || "Registration failed.");
-    //     } finally {
-    //         setLoading(false);
-    //     }
-    // };
-
-//     const handleSubmit = async (e) => {
-//   e.preventDefault();
-//   const validationError = validatePassword(password);
-//   if (validationError) {
-//     setError(validationError);
-//     return;
-//   }
-
-//   setError("");
-//   setLoading(true);
-//   try {
-//     const userCredential = await createUser(email, password, name, photoURL);
-//     toast.success("Registration successful!");
-//     navigate("/");
-//   } catch (err) {
-//     setError(err.message || "Registration failed.");
-//     toast.error(err.message || "Registration failed.");
-//   } finally {
-//     setLoading(false);
-//   }
-// };
+   
 
 
 const handleSubmit= async (e) => {

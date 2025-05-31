@@ -1,8 +1,4 @@
 import React, { useContext} from "react";
-// import { useAuthState } from "react-firebase-hooks/auth";
-// import app from "../firebase/firebase.config";
-// import { getAuth } from "firebase/auth";
-// import { getFirestore, collection, addDoc, serverTimestamp } from "firebase/firestore";
 import Navbar from "../Component/Navbar";
 import Footer from "../Component/Footer";
 import { AuthContext } from "../Provider/AuthProvider";
@@ -11,75 +7,6 @@ import Swal from "sweetalert2";
 
 
 const AddPlantForm = () => {
-//   const [user, setUser] = useState(null);
-//   useEffect(() => {
-//     const unsubscribe = auth.onAuthStateChanged((firebaseUser) => {
-//       setUser(firebaseUser);
-//     });
-//     return () => unsubscribe();
-//   }, []);
-
-//   const [formData, setFormData] = useState({
-//     image: "",
-//     plantName: "",
-//     category: "",
-//     description: "",
-//     careLevel: "",
-//     wateringFrequency: "",
-//     lastWateredDate: "",
-//     nextWateringDate: "",
-//     healthStatus: "",
-//     userEmail: user?.email || "",
-//     userName: user?.displayName || "Anonymous",
-//   });
-
-//   useEffect(() => {
-//     setFormData((prev) => ({
-//       ...prev,
-//       userEmail: user?.email || "",
-//       userName: user?.displayName || "Anonymous",
-//     }));
-//   }, [user]);
-
-//   const handleChange = (e) => {
-//     const { name, value } = e.target;
-//     setFormData({
-//       ...formData,
-//       [name]: value,
-//     });
-//   };
-
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
-
-//     try {
-//       const dataToSubmit = {
-//         ...formData,
-//         createdAt: serverTimestamp(),
-//       };
-
-//       await addDoc(collection(db, "plants"), dataToSubmit);
-//       alert("Plant added successfully!");
-//       setFormData({
-//         image: "",
-//         plantName: "",
-//         category: "",
-//         description: "",
-//         careLevel: "",
-//         wateringFrequency: "",
-//         lastWateredDate: "",
-//         nextWateringDate: "",
-//         healthStatus: "",
-//         userEmail: user?.email || "",
-//         userName: user?.displayName || "Anonymous",
-//       });
-//     } catch (error) {
-//       console.error("Error adding plant:", error);
-//       alert("Failed to add plant.");
-//     }
-//   };
-
-
 
 const {user} = useContext(AuthContext);
 const handleSubmit = (e) => {
@@ -87,12 +14,12 @@ const handleSubmit = (e) => {
     const form = e.target;
     const formData = new FormData(form);
     const newPlant = Object.fromEntries(formData.entries());
-    // Remove userName and userEmail before sending to backend
+   
     delete newPlant.userName;
     delete newPlant.userEmail;
     newPlant.email = user?.email;
     newPlant.userName = user?.displayName || "Anonymous";
-    // console.log(newPlant);
+   
     fetch('https://plant-care-server-gamma.vercel.app/plants', {
         method: "POST",
         headers: {
@@ -102,7 +29,7 @@ const handleSubmit = (e) => {
     })
     .then(res => res.json())
     .then(data => {
-      // console.log(newPlant.email, newPlant.userEmail)
+     
         if (data.insertedId) {
            Swal.fire({
             title: "Success!",
