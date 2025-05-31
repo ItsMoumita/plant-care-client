@@ -3,17 +3,16 @@ import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import AOS from "aos";
 import "aos/dist/aos.css";
-
 import Lottie from "lottie-react";
 import plantAnimation from "../assets/plant-care.json"; 
 
 const Hero = () => {
   useEffect(() => {
-    AOS.init({ duration: 1000 });
+    AOS.init({ duration: 500 });
   }, []);
 
   return (
-    <div className="w-full mx-auto mt-22 bg-[#b6ffb6]/70 dark:bg-[#b6ffb6]/50">
+     <div className="w-full mx-auto mt-22 bg-[#b6ffb6]/70 dark:bg-[#b6ffb6]/50">
       <div
         className="flex flex-col lg:flex-row gap-6 items-center"
         data-aos="zoom-in"
@@ -31,7 +30,7 @@ const Hero = () => {
           >
             {[
               "https://www.younghouselove.com/wp-content/uploads//2024/04/Goden-Vs-Neon-Vs-Marble-Pothos-Leaves-1024x688.jpg",
-              "https://www.younghouselove.com/wp-content/uploads//2024/04/Marble-Queen-Vs-Golden-Vs-Neon-Pothos-Guide-1024x723.jpg",
+              "https://salisburygreenhouse.com/wp-content/uploads/Second-Year-Gardening-Tips-main-sherwood-park.jpg",
               "https://nouveauraw.com/wp-content/uploads/2020/02/neon-pothos.png",
               "https://www.younghouselove.com/wp-content/uploads//2024/04/Marble-Queen-Vs-Golden-Pothos-Leaves-1024x778.jpg",
               "https://www.gardenia.net/wp-content/uploads/2024/02/shutterstock_1939163317.jpg",

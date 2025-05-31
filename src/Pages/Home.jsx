@@ -16,8 +16,8 @@ const Home = () => {
   return (
     <div>
       <Navbar />
-      <div data-aos="fade-up"><Hero /></div>
-      <div data-aos="fade-right"><NewPlants /></div>
+      <div><Hero /></div>
+      <div ><NewPlants /></div>
       <div data-aos="zoom-in"><ServicesSection /></div>
       <div data-aos="fade-up"><FaqSection /></div>
       <Footer />

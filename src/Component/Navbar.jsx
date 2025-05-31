@@ -1,9 +1,9 @@
 import { useState, useEffect, useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { Menu, X } from "lucide-react";
-import { AuthContext } from "../Provider/AuthProvider"; // adjust path if needed
-import { toast } from "react-toastify";
+import { AuthContext } from "../Provider/AuthProvider"; 
 import ThemeToggle from "./ThemeToggle";
+import Swal from "sweetalert2";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -22,7 +22,15 @@ export default function Navbar() {
   const handleLogout = async () => {
     try {
       await logOut();
-      toast.success("Logged out successfully!");
+     
+        await Swal.fire({
+                      title: "Success!",
+                      text: "Logged out successful!",
+                      icon: "success",
+                      background: "white/70",
+                      color: "rgba(6,64,43,0.7)",
+                      confirmButtonColor: "rgba(6,64,43,0.7)",
+                  });
     } catch (error) {
       console.error("Logout failed:", error);
     }
