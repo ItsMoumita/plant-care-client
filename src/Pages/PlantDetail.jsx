@@ -34,7 +34,7 @@ const PlantDetail = () => {
       <div className="max-w-xl mx-auto p-6">
       <div className="bg-white rounded-lg shadow-lg p-6 md:p-12 mt-22">
         <img src={plant.image} alt={plant.plantName} className="w-full h-74 object-cover rounded-md mb-4" />
-        <h2 className="text-2xl font-bold mb-2">{plant.plantName}</h2>
+        <h2 className="text-2xl text-[#1a5c3a] font-bold mb-2">{plant.plantName}</h2>
         <p className="text-gray-600 mb-1"><strong>Category:</strong> {plant.category}</p>
         <p className="text-gray-600 mb-1"><strong>Description:</strong> {plant.description}</p>
         <p className="text-gray-600 mb-1"><strong>Care Level:</strong> {plant.careLevel}</p>
