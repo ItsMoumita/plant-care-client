@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 import Navbar from "../Component/Navbar";
 import Footer from "../Component/Footer";
 import Loading from "../Component/Loading";
+import { Helmet } from "react-helmet";
 
 const UpdatePlant = () => {
   const { id } = useParams();
@@ -58,6 +59,9 @@ console.log("Updated Plant Data:", updatedPlant);
 
   return (
     <div className="bg-[#e6ffe6] min-h-screen">
+       <Helmet>
+          <title>Plant Care | UpdatePlant</title>
+        </Helmet>
       <Navbar />
       <div className="max-w-3xl mx-auto p-8">
         <h2 className="text-3xl font-bold mb-6 text-green-800 text-center">Update Plant</h2>

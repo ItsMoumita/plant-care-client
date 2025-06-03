@@ -5,6 +5,7 @@ import { AuthContext } from "../Provider/AuthProvider";
 import Footer from "../Component/Footer";
 import Navbar from "../Component/Navbar";
 import Loading from "../Component/Loading";
+import { Helmet } from "react-helmet";
 
 const PlantDetail = () => {
   const { id } = useParams();
@@ -30,6 +31,9 @@ const PlantDetail = () => {
   return (
   
     <div>
+       <Helmet>
+          <title>Plant Care | PlantDetails</title>
+        </Helmet>
       <Navbar></Navbar>
       <div className="max-w-xl mx-auto p-6">
       <div className="bg-white rounded-lg shadow-lg p-6 md:p-12 mt-22">
@@ -39,7 +43,7 @@ const PlantDetail = () => {
         <p className="text-gray-600 mb-1"><strong>Description:</strong> {plant.description}</p>
         <p className="text-gray-600 mb-1"><strong>Care Level:</strong> {plant.careLevel}</p>
         <p className="text-gray-600 mb-1"><strong>Watering:</strong> {plant.wateringFrequency}</p>
-        <p className="text-gray-600 mb-1"><strong>Last Watered:</strong> {typeof plant.lastWateredDate}</p>
+        <p className="text-gray-600 mb-1"><strong>Last Watered:</strong> {plant.lastWateredDate}</p>
         <p className="text-gray-600 mb-1"><strong>Next Watering:</strong> {plant.nextWateringDate}</p>
         <p className="text-gray-600 mb-1"><strong>Health:</strong> {plant.healthStatus}</p>
         {

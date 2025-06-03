@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Navbar from "../Component/Navbar";
 import Footer from "../Component/Footer";
 import Loading from "../Component/Loading";
+import { Helmet } from "react-helmet";
 
 const AllPlants = () => {
   const [plants, setPlants] = useState([]);
@@ -25,8 +26,12 @@ const AllPlants = () => {
     <Loading></Loading>
   );
 
+
   return (
      <div >
+       <Helmet>
+                <title>Plant Care | AllPlants</title>
+              </Helmet>
         <Navbar></Navbar>
         <div className="p-6 md:p-12 mx-auto mt-22 bg-[#e6ffe6] dark:bg-[#c7ecc7] font-semibold dark:text-black">
       <h2 className="text-2xl font-semibold mb-4 text-green-900 dark:text-[#0d3c29] text-center">All Plants</h2>
@@ -38,6 +43,7 @@ const AllPlants = () => {
               <th className="px-4 py-3 text-center">Plant Name</th>
               <th className="px-4 py-3 text-center">Category</th>
               <th className="px-4 py-3 text-center">Watering Frequency</th>
+              <th className="px-4 py-3 text-center">Next Watering Date</th>
               <th className="px-4 py-3 text-center">Action</th>
             </tr>
           </thead>
@@ -47,6 +53,7 @@ const AllPlants = () => {
                 <td className="px-4 py-3 text-[#0d3c29]">{plant.plantName}</td>
                 <td className="px-4 py-3 text-[#0d3c29]">{plant.category}</td>
                 <td className="px-4 py-3 text-[#0d3c29]">{plant.wateringFrequency}</td>
+                <td className="px-4 py-3 text-[#0d3c29]">{plant.nextWateringDate}</td>
                 <td className="px-4 py-3 text-[#0d3c29]">
                   <Link to={`/plants/${plant._id}`}>
                     <button className="bg-green-900 dark:bg-[#0d3c29] text-white px-4 py-1 rounded hover:bg-[#0d3c29]/80">

@@ -3,6 +3,7 @@ import Navbar from "../Component/Navbar";
 import Footer from "../Component/Footer";
 import { AuthContext } from "../Provider/AuthProvider";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet";
 
 
 
@@ -62,6 +63,9 @@ const handleSubmit = (e) => {
 
   return (
       <div className="bg-[#e6ffe6]">
+        <Helmet>
+          <title>Plant Care | AddPlants</title>
+        </Helmet>
         <Navbar></Navbar>
 
   <div className="max-w-5xl mx-auto p-8  bg-[#e6ffe6] shadow-lg mt-22 ">

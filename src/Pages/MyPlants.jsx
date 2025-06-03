@@ -5,6 +5,7 @@ import Footer from "../Component/Footer";
 import { AuthContext } from "../Provider/AuthProvider";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet";
 
 const MyPlants = () => {
     const { user } = useContext(AuthContext);
@@ -58,6 +59,9 @@ const MyPlants = () => {
 
     return (
         <div>
+             <Helmet>
+          <title>Plant Care | MyPlants</title>
+        </Helmet>
             <Navbar />
             <div className="p-6 md:p-12 mx-auto md:min-h-[60vh] mt-22 bg-[#e6ffe6] dark:bg-[#c7ecc7] font-semibold dark:text-black">
                 <h2 className="text-2xl font-semibold mb-4 text-green-900 dark:text-[#0d3c29] text-center">My Plants</h2>

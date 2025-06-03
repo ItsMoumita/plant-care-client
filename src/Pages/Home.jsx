@@ -7,6 +7,7 @@ import Footer from '../Component/Footer';
 import ServicesSection from '../Component/ServicesSection';
 import FaqSection from '../Component/FaqSection';
 import NewPlants from '../Component/NewPlants';
+import { Helmet } from 'react-helmet';
 
 const Home = () => {
   useEffect(() => {
@@ -15,6 +16,9 @@ const Home = () => {
 
   return (
     <div>
+       <Helmet>
+         <title>Plant Care | Home</title>
+       </Helmet>
       <Navbar />
       <div><Hero /></div>
       <div ><NewPlants /></div>
