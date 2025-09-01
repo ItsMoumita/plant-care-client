@@ -1,6 +1,6 @@
 # 🌿 Plant Care 
 
-A full-stack, mobile-responsive web application designed to help users manage and monitor the care of their indoor and outdoor plants. Built with React, Firebase, TailwindCSS, and more.
+A full-stack, mobile-responsive web application designed to help users manage and monitor the care of their indoor and outdoor plants. Built with React, Firebase, TailwindCSS, and more
 
 **Live Demo**: [🌱 Visit Plant Care](https://plant-care-fc5f9.web.app/)
 
